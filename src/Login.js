@@ -5,14 +5,13 @@ import firebase from 'firebase';
 import styles from './styles';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDhQNGL8823UPpKWCk1jUyqekthkS8rVg0",
+  apiKey: "API_KEY",
   authDomain: "newproj-93dfe.firebaseapp.com",
   databaseURL: "https://newproj-93dfe.firebaseio.com",
   projectId: "newproj-93dfe",
   storageBucket: "newproj-93dfe.appspot.com",
-  messagingSenderId: "397006982875",
-  appId: "1:397006982875:web:0599157e6f3221adb506fe",
-  measurementId: "G-YPWGLT6XV2"
+  messagingSenderId: "ID",
+  appId: "APP_ID,
 };
 firebase.initializeApp(firebaseConfig);
 
