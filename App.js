@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import {createAppContainer} from 'react-navigation';
-import {createStackNavigator,HeaderBackButton} from 'react-navigation-stack';
+import {createAppContainer,SwitchNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import Login from './src/Login';
+import SignUp from './src/SignUp';
 import Dashboard from './src/Dashboard';
+import Loading from './src/Loading';
 
-const App = createStackNavigator({
-    Login: {
-      screen:Login,
-      navigationOptions: ({ navigation }) => ({
-        header: null
-      })
+const App = createStackNavigator(
+    {
+      Loading,
+      SignUp,
+      Login,
+      Dashboard
     },
-    Dashboard:{
-        screen:Dashboard,
-        navigationOptions: ({ navigation }) => ({
-          header: null
-        })
+    {
+      initialRouteName: 'Loading',
+    
     }
-})
+
+)
     
 export default createAppContainer(App);
