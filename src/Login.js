@@ -30,17 +30,15 @@ export default class Login extends Component{
     password : ''
   })
 }
-loginIn = (email,password,name) => {
-  try 
-  {
-    firebase.auth().createUserWithEmailAndPassword(email,password,name)
-  }
-  catch(error)
-  {
-    console.log(error.toString())
-  }
-  alert('Login Successful')
-  this.props.navigation.navigate('Dashboard',{name:this.state.name})
+
+loginIn = () => {
+  const { email, password,name } = this.state
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(() => this.props.navigation.navigate('Dashboard',{name:this.state.name}),
+    alert('Login Successful'))
+    .catch(error => this.setState({ errorMessage: error.message }))
 }
 render(){
     return(
@@ -48,8 +46,13 @@ render(){
         
         <Text style={styles.header}>Welcome !!!</Text>
         <Text style={styles.subHeader}> Login to continue</Text>
-
-        <Text style={styles.placeholderStyle}>Enter Name</Text>
+        <Text>
+        {this.state.errorMessage &&
+          <Text style={{ color: 'red' }}>
+            {this.state.errorMessage}
+          </Text>}
+        </Text>
+        <Text style={styles.placeholderStyle}>Enter Name(Optional)</Text>
         <TextInput 
         style={styles.textInput}
         onChangeText={name => this.setState({ name })}
@@ -66,6 +69,7 @@ render(){
         <Text style={styles.placeholderStyle}>Password</Text>
         <TextInput 
         style={styles.textInput}
+        secureTextEntry={true}
         onChangeText={password => this.setState({ password })}
         value={this.state.password}
         />
